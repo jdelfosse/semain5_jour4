@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TheGossipProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/gossip">The Gossip Project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+
+
+
+<%if session[:user_id]%>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%=session[:user_id][0]["name"]  %>
+
+        </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+         <p class='dropdown-item' ><%=session[:user_id][0]["email"]  %></p>
+
+
+ <form action="deconexion" method="POST">
+  <div class="row">
+  </div>
+            <div class="dropdown-divider"></div>
+    <button type="submit" class="dropdown-item">Se deconecter</button>
+            </div>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  </form>
+
+
+
+
+
+
+<% else %>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Conexion
+        </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+ <form action="conexion" method="POST">
+    <div class="row">
+      <div class="col">
+        <input type="string" class="form-control" placeholder="name" name="name">
+      </div>
+    </div>
+   <div class="row">
+      <div class="col">
+        <input type="string" class="form-control" placeholder="email" name="email">
+      </div>
+    </div>
+   <div class="row">
+      <div class="col">
+        <input type="string" class="form-control" placeholder="password" name="password">
+      </div>
+    </div>
+
+    <button type="submit" class="dropdown-item">Se conecter</button>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  </form>
+
+             <div class="dropdown-divider"></div>
+    <a href="/registration/new#" ><button type="submit" class="dropdown-item">cree un compte</button></a>
+
+
+<% end %>
+
+
+
+
+
+
+      </li>
+    </ul>
+   </div>
+</nav>
+
+
+
+
+
+
+
+
+    <%= yield %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
