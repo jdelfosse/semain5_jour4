@@ -1,0 +1,21 @@
+
+
+
+<body>
+	<h2>Creation des potin</h2>
+	<form action="/gossip/change/<%= @gossip[0][:id] %>" method="POST">
+	 <div class="row">
+	    <div class="col">
+	      <input type="string" class="form-control" placeholder="titre" value="<%= @gossip[0][:titre] %>" name="titre">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="formGroupExampleInput2"></label>
+	    <input type="text" class="form-control" id="formGroupExampleInput2" value="<%= @gossip[0][:content] %>" placeholder="contenue" name="content">
+	  </div>
+	  <button type="submit" class="btn btn-primary mb-2">Modifier le potin</button>
+	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	</form>
+
+
+</body>

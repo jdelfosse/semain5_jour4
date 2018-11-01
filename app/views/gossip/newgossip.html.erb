@@ -1,0 +1,36 @@
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+
+
+
+
+
+<body>
+	<h2>Creation des potin</h2>
+	<form action="/gossip/create" method="POST">
+	 <div class="row">
+	    <div class="col">
+	      <input type="string" class="form-control" placeholder="titre" name="titre">
+	    </div>
+
+	  </div>
+	  <div class="form-group">
+	    <label for="formGroupExampleInput2"></label>
+	    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="contenue" name="content">
+	  </div>
+	  <button type="submit" class="btn btn-primary mb-2">Cree le potin</button>
+	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	</form>
+
+	<div>
+		<% @gossip_id = 1 %>
+		<% @all_gossip.each do |gossip| %>
+		<p> <%= gossip[:id] %> <%= gossip[:content] %> <%= gossip[:titre] %> <%= gossip[:user_id] %></p>
+		<% @gossip_id += 1 %>
+		<% end %>
+
+	</div>
+
+</body>

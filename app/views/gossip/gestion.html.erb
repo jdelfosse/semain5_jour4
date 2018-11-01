@@ -1,0 +1,36 @@
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<div id="gossip_container">
+	<% @gossip_id = 1 %>
+	<% @all_gossip.each do |gossip| %>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-text"> <%= gossip[:titre] %></h5>
+					<p class="card-title"> <%= gossip[:content] %></p>	  
+
+
+	<form action="/gossip/destroy/<%= gossip[:id] %>" method="POST">
+
+	<button type="submit" class="btn btn-primary mb-2">Suprimer</button>
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	</form>
+
+	<a href="/gossip/edit/<%= gossip[:id] %>">
+
+	<button type="submit" class="btn btn-primary mb-2">Editer</button>
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	</a>
+
+
+
+				</div>
+			</div>
+	<% @gossip_id += 1 %>
+	<% end %>
+</div>
+
+

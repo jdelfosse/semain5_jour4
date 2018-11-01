@@ -16,7 +16,7 @@ class RegistrationController < ApplicationController
 	def conexion
 		@current_user = User.where(name: params[:name],email: params[:email], password: params[:password])
 
-	    if @current_user.ids
+	    if @current_user.where(name: params[:name],email: params[:email], password: params[:password]).exists?
 
 	      session[:user_id] = @current_user
 
@@ -27,9 +27,6 @@ class RegistrationController < ApplicationController
 	    else
 
 	      session[:user_id] = nil
-
-	      flash[:info] = "Échec de la connexion"
-
 		  redirect_to "/gossip"
 
 	    end
