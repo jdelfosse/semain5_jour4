@@ -1,7 +1,86 @@
 <body>
 
+<div class="row">
+
+  
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
     <h6 class="card-subtitle mb-2 text-muted"><%= @gossip[0][:titre] %></h6>
+
+
     <p class="card-text"><%= @gossip[0][:content] %></p>
+
+
+    <h6 class="card-subtitle mb-2 text-muted"><%= User.where(id: @gossip[0][:user_id])[0]["name"] %></h6> 
+    <h7 class="card-subtitle mb-2 text-muted"><%= @gossip[0][:created_at] %></h7> 
+ 
+
+<% if session[:user_id] %>
+<div class="row">
+<% if Like.where(user_id: session[:user_id][0]["id"], gossip_id: @gossip[0][:id]).exists? %>
+
+
+
+  <form action="/gossip/unlike/<%= @gossip[0][:id] %>" method="POST">
+
+  <button type="submit" class="btn btn-primary mb-2">Dislke</button>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+<%= Like.where(gossip_id: @gossip[0][:id]).count %>
+  </form>
+
+
+
+<% else %>
+
+
+  <form action="/gossip/like/<%= @gossip[0][:id] %>" method="POST">
+
+  <button type="submit" class="btn btn-primary mb-2">Liker</button>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+
+<%= Like.where(gossip_id: @gossip[0][:id]).count %>
+  </form>
+
+
+
+<% end %>
+
+
+<% if @gossip.where(id: @gossip[0][:id] , user_id: session[:user_id][0]["id"]).exists? %>
+
+
+
+  <form action="/gossip/destroy/<%= @gossip[0][:id] %>" method="POST">
+
+
+  <button type="submit" class="btn btn-primary mb-2">Suprimer</button>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  </form>
+
+  <a href="/gossip/edit/<%= @gossip[0][:id] %>">
+
+  <button type="submit" class="btn btn-primary mb-2">Editer</button>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  </a>
+<% end %>
+
+<%else%>
+
+<%= Like.where(gossip_id: @gossip[0][:id]).count %>
+
+<% end %>
+</div>
+
+  </div>
+</div>
+
+
+
+</div>
 
 
 

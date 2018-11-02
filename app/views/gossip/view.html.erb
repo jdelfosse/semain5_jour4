@@ -8,7 +8,14 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h6 class="card-subtitle mb-2 text-muted"><%= gossip[:titre] %></h6>
+
+<% if gossip[:content].size > 150 %>
+    <p class="card-text"><%= gossip[:content][0..150] %>...</p>
+<% else %>
     <p class="card-text"><%= gossip[:content] %></p>
+<% end %>
+
+
     <h6 class="card-subtitle mb-2 text-muted"><%= User.where(id: gossip[:user_id])[0]["name"] %></h6> 
     <h7 class="card-subtitle mb-2 text-muted"><%= gossip[:created_at] %></h7> 
  <a href="/gossip/<%= gossip[:id] %>" class="btn btn-primary">Voir la page</a>
@@ -44,7 +51,6 @@
   </form>
 
 
-<% end %>
 
 <% end %>
 
@@ -69,6 +75,11 @@
   </a>
 <% end %>
 
+<%else%>
+
+<%= Like.where(gossip_id: gossip[:id]).count %>
+
+<% end %>
 
 
   </div>

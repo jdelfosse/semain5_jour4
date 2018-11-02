@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   post '/registration/create', to: 'registration#create'  
   post '/registration/conexion', to: 'registration#conexion'
-  post '/registration/deconexion', to: 'registration#deconexion'
+  get '/registration/deconexion', to: 'registration#deconexion'
   get '/registration/new', to: 'registration#new'
-  
+
   post '/gossip/unlike/:id', to: 'gossip#unlike'
   post '/gossip/like/:id', to: 'gossip#like'
   post '/gossip/destroy/:id', to: 'gossip#destroy'

@@ -18,9 +18,12 @@ ActiveRecord::Schema.define(version: 2018_10_31_141935) do
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "gossip_id"
+    t.string "commenteable_type"
+    t.bigint "commenteable_id"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["commenteable_type", "commenteable_id"], name: "index_comments_on_commenteable_type_and_commenteable_id"
     t.index ["gossip_id"], name: "index_comments_on_gossip_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

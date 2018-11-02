@@ -12,8 +12,6 @@
 
   <body>
 
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/gossip">The Gossip Project</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,10 +21,10 @@
   <div class="collapse navbar-collapse " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/gossip/new">Cree un potin<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="/gossip/gestion">Gerer ses potin</a>
       </li>
 
 
@@ -36,7 +34,7 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%=session[:user_id][0]["name"]  %>
+          Conecter <%=session[:user_id][0]["name"]  %>
 
         </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -44,14 +42,17 @@
          <p class='dropdown-item' ><%=session[:user_id][0]["email"]  %></p>
 
 
- <form action="/registration/deconexion" method="POST">
+
+
+  <a href="/registration/deconexion">
   <div class="row">
   </div>
             <div class="dropdown-divider"></div>
     <button type="submit" class="dropdown-item">Se deconecter</button>
             </div>
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  </form>
+   </a>
+
+
 
 
 

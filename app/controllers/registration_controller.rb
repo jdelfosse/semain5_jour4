@@ -34,7 +34,7 @@ class RegistrationController < ApplicationController
 
 	def deconexion
       session[:user_id] = nil
-	  redirect_to "/gossip"
+	  redirect_to request.referrer
 
 	end
 end
