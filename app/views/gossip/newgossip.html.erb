@@ -24,13 +24,5 @@
 	  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	</form>
 
-	<div>
-		<% @gossip_id = 1 %>
-		<% @all_gossip.each do |gossip| %>
-		<p> <%= gossip[:id] %> <%= gossip[:content] %> <%= gossip[:titre] %> <%= gossip[:user_id] %></p>
-		<% @gossip_id += 1 %>
-		<% end %>
-
-	</div>
 
 </body>
