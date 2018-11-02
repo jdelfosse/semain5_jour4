@@ -92,7 +92,7 @@
 
 	<div>
 		<% @comment_id = 1 %>
-		<% @all_comment.each do |user| %>
+		<% @all_comment.where(gossip_id: params[:id]).each do |user| %>
 		<p> <%= user[:comment] %></p>
 
 			<div class="dropdown">
