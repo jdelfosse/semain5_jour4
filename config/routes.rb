@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/registration/deconexion', to: 'registration#deconexion'
   get '/registration/new', to: 'registration#new'
 
+  post '/gossip/creatcomment/:id', to: 'gossip#creatcomment'
   post '/gossip/unlike/:id', to: 'gossip#unlike'
   post '/gossip/like/:id', to: 'gossip#like'
   post '/gossip/destroy/:id', to: 'gossip#destroy'

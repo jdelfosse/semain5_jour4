@@ -15,8 +15,16 @@ class GossipController < ApplicationController
 		end
 	end
 
+	def creatcomment
+		Comment.create(user_id: session[:user_id][0]["id"], gossip_id: params[:id], comment: params[:content],commenteable_id: params[:comment_id2] )
+	end
+
+
+
+
+
 	def like
-		Like.create(user_id: session[:user_id][0]["id"], gossip_id: params[:id])
+		Like.create(gossip_id: params[:id])
 		redirect_to request.referrer
 	end
 
@@ -43,6 +51,7 @@ class GossipController < ApplicationController
 	end
 
 	def index
+		@all_comment = Comment.all			
   		@users = User.where(id: params[:id])
   		@like = Like.where(id: params[:id])
 		@gossip = Gossip.where(id: params[:id])

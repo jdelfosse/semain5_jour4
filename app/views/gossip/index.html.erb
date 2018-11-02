@@ -73,16 +73,72 @@
 <%= Like.where(gossip_id: @gossip[0][:id]).count %>
 
 <% end %>
+	<div class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Commenter
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+		<form action="/gossip/creatcomment/<%= @gossip[0][:id]%>" method="POST">
+		  <div class="form-group">
+		    <label for="formGroupExampleInput2"></label>
+		    <input type="hidden" name="comment_id2" value="0">
+		    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="contenue" name="content">
+		  </div>
+		  <button type="submit" class="btn btn-primary mb-2">Commenter</button>
+		  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		</form>
+	  </div>
+	</div>
+
+	<div>
+		<% @comment_id = 1 %>
+		<% @all_comment.each do |user| %>
+		<p> <%= user[:comment] %> <%= user[:commenteable_id] %></p>
+
+
+			<div class="dropdown">
+			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Commenter
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+				<form action="/gossip/creatcomment/<%= @gossip[0][:id]%>" method="POST">
+				  <div class="form-group">
+				    <label for="formGroupExampleInput2"></label>
+				    <input type="hidden" name="comment_id2" value="<%= @comment_id %>">
+				    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="contenue" name="content">
+				  </div>
+				  <button type="submit" class="btn btn-primary mb-2">Commenter</button>
+				  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				</form>
+			  </div>
+			</div>
+
+		<% @comment_id += 1 %>
+		<% end %>
+
 </div>
 
-  </div>
-</div>
+
+
+
+
+
+
 
 
 
 </div>
-
-
+</div>
+</div>
+</div>
 
 
 </body>
+
+
+
+
+
+
+
+

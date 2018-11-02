@@ -5,6 +5,7 @@ class RegistrationController < ApplicationController
 			redirect_to "/registration/new"			
 		else
 			User.create!(name: params[:name] , email: params[:email], password: params[:password]) 
+	        session[:user_id] = User.where(name: params[:name],email: params[:email], password: params[:password])			
 			redirect_to "/registration/new"
   		end
   	end
