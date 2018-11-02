@@ -19,10 +19,6 @@ class GossipController < ApplicationController
 		Comment.create(user_id: session[:user_id][0]["id"], gossip_id: params[:id], comment: params[:content],commenteable_id: params[:comment_id2] )
 	end
 
-
-
-
-
 	def like
 		Like.create(gossip_id: params[:id])
 		redirect_to request.referrer
